@@ -8,6 +8,7 @@ Requirement: Go 1.23+
 
 ```bash
 go build
+# For windows: go build -ldflags -H=windowsgui
 ./my-desktop-notifier
 ```
 
@@ -27,6 +28,16 @@ schedules:
     time: 23:00
     content: Time to sleep.
 ```
+
+## Windows Setup
+
+Build the app using:
+
+```bash
+go build -ldflags -H=windowsgui
+```
+
+Then create a shortcut for `my-desktop-notifier.exe` and put it in the startup directory, typically `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`, where `Administrator` should be replaced with your username.
 
 ## Screenshots
 
