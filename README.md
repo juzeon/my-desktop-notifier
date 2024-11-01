@@ -8,8 +8,7 @@ Requirement: Go 1.23+
 
 ```bash
 go build
-# For windows: go build -ldflags -H=windowsgui
-./my-desktop-notifier
+./my-desktop-notifier # my-desktop-notifier.exe on Windows
 ```
 
 ## Configuration
@@ -31,13 +30,16 @@ schedules:
 
 ## Windows Setup
 
-Build the app using:
+Build the app and create a `my-desktop-notifier.vbs` in the same directory as `my-desktop-notifier.exe`:
 
-```bash
-go build -ldflags -H=windowsgui
+```vbscript
+Dim WinScriptHost
+Set WinScriptHost = CreateObject("WScript.Shell")
+WinScriptHost.Run Chr(34) & "my-desktop-notifier.exe" & Chr(34), 0
+Set WinScriptHost = Nothing
 ```
 
-Then create a shortcut for `my-desktop-notifier.exe` and put it in the startup directory, typically `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`, where `Administrator` should be replaced with your username.
+Then create a shortcut for `my-desktop-notifier.vbs` and put it in the startup directory, typically `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`, where `Administrator` should be replaced with your username.
 
 ## Screenshots
 
