@@ -30,16 +30,7 @@ schedules:
 
 ## Windows Setup
 
-Build the app and create a `my-desktop-notifier.vbs` in the same directory as `my-desktop-notifier.exe`:
-
-```vbscript
-Dim WinScriptHost
-Set WinScriptHost = CreateObject("WScript.Shell")
-WinScriptHost.Run Chr(34) & "my-desktop-notifier.exe" & Chr(34), 0
-Set WinScriptHost = Nothing
-```
-
-Then create a shortcut for `my-desktop-notifier.vbs` and put it in the startup directory, typically `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`, where `Administrator` should be replaced with your username.
+Build the app and create a shortcut for `my-desktop-notifier.vbs` and put it in the startup directory, typically `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`, where `Administrator` should be replaced with your username.
 
 ## Screenshots
 
