@@ -9,6 +9,7 @@ import (
 )
 
 type Cfg struct {
+	Port      int         `yaml:"port"`
 	Schedules []*Schedule `yaml:"schedules"`
 }
 type Schedule struct {

@@ -16,6 +16,7 @@ go build
 Create `config.yml`:
 
 ```yaml
+port: 7888 # Port for the hot reloading endpoint
 schedules:
   - week: 0 # Sunday
     time: 15:04

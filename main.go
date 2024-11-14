@@ -5,7 +5,9 @@ import (
 	"github.com/samber/lo"
 	"io"
 	"log/slog"
+	"net/http"
 	"os"
+	"strconv"
 )
 
 //go:embed assets/Alarm.png
@@ -22,5 +24,22 @@ func main() {
 		os.Exit(1)
 	}
 	scheduler := NewScheduler(config.Schedules)
+	go func() {
+		http.ListenAndServe(":"+strconv.Itoa(lo.Ternary(config.Port == 0, 7888, config.Port)),
+			http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+				if request.Method != http.MethodPost {
+					writer.WriteHeader(400)
+					return
+				}
+				cfg, err := ReadConfig()
+				if err != nil {
+					writer.WriteHeader(400)
+					writer.Write([]byte(err.Error()))
+					return
+				}
+				config = cfg
+				scheduler.UpdateSchedules(config.Schedules)
+			}))
+	}()
 	scheduler.Run()
 }

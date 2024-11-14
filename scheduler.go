@@ -20,6 +20,10 @@ func NewScheduler(schedules []*Schedule) *Scheduler {
 		DateToday:               "0000-00-00",
 	}
 }
+func (o *Scheduler) UpdateSchedules(schedules []*Schedule) {
+	o.Schedules = schedules
+	o.scheduleForToday()
+}
 func (o *Scheduler) scheduleForToday() {
 	timeNow := time.Now()
 	week := timeNow.Weekday()
